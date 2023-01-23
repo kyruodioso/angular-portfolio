@@ -1,0 +1,118 @@
+<section class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card card-plain">
+            <div class="card-header">
+              <h1 class="profile-title text-left">Contacto</h1>
+              <h5 class="text-on-back">03</h5>
+            </div>
+            <div class="card-body">
+              <form [formGroup]="form" (submit)="send()" autocomplete="off">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="name"> Su Nombre </label>
+                      <input class="form-control" type="text" id="name" value="Nombre" formControlName="name" required/>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="email"> Email </label>
+                      <input
+                        class="form-control"
+                        placeholder="email@email.com"
+                        type="email"
+                        id="email"
+                        formControlName="email"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="phone"> Telefono </label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="phone"
+                        placeholder="011-152321345"
+                        formControlName="phone"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label id="company"> Compañia </label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        placeholder="Empresa"
+                        id="company"
+                        formControlName="company"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label id="message"> Mensaje </label>
+                      <input
+                        class="form-control"
+                        placeholder="Quisiera contactarme"
+                        type="text"
+                        id="message"
+                        formControlName="message"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <button
+                  class="btn btn-danger btn-round float-right"
+                  placement="right"
+                  [disabled]="form.invalid"
+                  type="submit"
+                >
+                  Enviar
+                </button>
+               
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 ml-auto">
+          <div class="info info-horizontal">
+            <div class="icon icon-danger">
+              <i class="tim-icons icon-square-pin"> </i>
+            </div>
+            <div class="description">
+              <h4 class="info-title">Ubicacion</h4>
+              <p>
+                Ituzaingo <br />
+
+                Buenos Aires, <br />
+
+                Argentina
+              </p>
+            </div>
+          </div>
+          <div class="info info-horizontal">
+            <div class="icon icon-danger">
+              <i class="tim-icons icon-email-85"> </i>
+            </div>
+            <div class="description">
+              <h4 class="info-title">Email</h4>
+              <p>
+                Cristian Bejarano <br />
+
+                cristianbejaranodev@gmail.com
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

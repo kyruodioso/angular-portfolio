@@ -1,0 +1,141 @@
+
+<div class="wrapper  animate__animated animate__fadeIn animate__slow">
+  <div class="page-header">
+    <img class="dots" src="assets/img/dots.png" />
+
+    <img class="path" src="assets/img/path4.png" />
+
+    <div class="container align-items-center " *ngFor="let author of author">
+      <div class="row">
+        <div class="col-lg-6 col-md-6">
+          <h1 class="profile-title text-left">{{author.name}}</h1>
+          <h5 class="text-on-back">01</h5>
+          
+          <p class="profile-description">
+           {{author.description}}
+          </p>
+          <div class="btn-wrapper profile pt-3">
+            <a
+              class="btn btn-icon btn-github btn-round mr-1"
+              href="https://github.com/kyru.odioso"
+              target="_blank"
+            >
+              <i class="fab fa-github"> </i>
+            </a>
+            <a
+              class="btn btn-icon btn-linkedin btn-round mr-1"
+              href="https://www.linkedin.com/in/cristian-bejarano-dev/"
+              target="_blank"
+            >
+              <i class="fab fa-linkedin"> </i>
+            </a>
+            <a
+              class="btn btn-icon btn-dribbble btn-round"
+              href="https://www.instagram.com/kyruodioso"
+              target="_blank"
+            >
+              <i class="fab fa-instagram"> </i>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 ml-auto mr-auto">
+          <div class="card card-coin card-plain">
+            <div class="card-header">
+              <img
+                class="img-center img-fluid rounded-circle"
+                src="{{imageUrl(author.image)}}"
+              />
+
+              <h4 class="title">Especialidades</h4>
+            </div>
+            <div class="card-body">
+              <tabset
+                class="nav-tabs-danger justify-content-center tab-subcategories"
+              >
+                <tab heading="Tecnologias">
+                  <div class="table"  style="height: 10em;overflow-y: scroll;">
+                    <table class="table tablesorter" id="plain-table">
+                      <thead class="text-danger">
+                        <tr>
+                          <th class="header">Conocimiento</th>
+                        </tr>
+                      </thead>
+                      <tbody *ngFor="let tech of author.technology">
+                        <tr>
+                          <td>{{tech}}</td>
+                        </tr>
+                   
+                      </tbody>
+                    </table>
+                  </div>
+                </tab>
+                <tab heading="En aprendizaje">
+                  <div class="table">
+                    <table class="table tablesorter" id="plain-table">
+                      <thead class="text-danger">
+                        <tr>
+                          <th class="header">Trancitando</th>
+                        </tr>
+                      </thead>
+                      <tbody *ngFor="let technew of author.technology_in_process">
+                        <tr>
+                          <td>{{technew}}</td>
+                        </tr>
+                   
+                      </tbody>
+                    </table>
+                  </div>
+                </tab>
+              </tabset>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="container">
+      <div class="row justify-content-between">
+        <div class="col-md-6">
+          <div class="row justify-content-between align-items-center">
+            <carousel [showIndicators]="true">
+              <slide *ngFor="let project of projects">
+                <img
+                  alt="First slide"
+                  class="d-block"
+                  src="{{imageUrl(project.mainImage)}}"
+                />
+
+                <div class="carousel-caption d-none d-md-block">
+                  <h5>{{project.title}}</h5>
+                </div>
+              </slide>
+
+            </carousel>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <h1 class="profile-title text-left">Proyectos</h1>
+          <h5 class="text-on-back">02</h5>
+          <p class="profile-description text-left">
+           Una lista completa de proyectos personales y trabajos para terceros, personas/empresas. 
+            Manteniendo un aprendizaje constante, aplicando cada tecnologia correspondiente dependiendo de los requerimientos de cada trabajo.
+          </p>
+          <div class="btn-wrapper pt-3">
+            <button
+              class="btn btn-simple btn-danger mr-1"
+              routerLink="/projects"
+            >
+              <i class="tim-icons icon-bulb-63"> </i> Go Projects
+            </button>
+             <a class="btn btn-simple btn-info" type="button" href="http://www.github.com/kyruodioso" target="_blank" rel="noopener noreferrer">
+              <i class="tim-icons icon-github"> </i> Go Code!</a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<app-form-contact></app-form-contact>
+
+</div>

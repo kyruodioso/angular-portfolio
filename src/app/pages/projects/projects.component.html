@@ -1,0 +1,83 @@
+<div class="page-header header-filter animate__animated animate__slow">
+  <img class="path" src="assets/img/blob.png" />
+
+  <img class="path2" src="assets/img/path2.png" />
+
+  <img class="shapes triangle" src="assets/img/triunghiuri.png" />
+
+  <img class="shapes wave" src="assets/img/waves.png" />
+
+  <img class="shapes squares" src="assets/img/patrat.png" />
+
+  <img class="shapes circle" src="assets/img/cercuri.png" />
+
+  <div class="content-center brand">
+    <div
+      class="row row-grid justify-content-between align-items-center text-left"
+    >
+   <!--Container-->
+   <div class="col-lg col-md">
+
+   
+    <div class="btn-wrapper mb-3">
+    
+    </div>
+
+  </div>
+ 
+  </div>
+</div>
+
+<section class="section section-lg">
+  <img class="path" src="assets/img/path3.png" />
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <hr class="line-info" />
+
+        <h1>
+          Projectos.
+          <span class="text-info"> Trabajos </span>
+        </h1>
+      </div>
+      </div>
+    </div>
+    
+    <div class="container animate__animated  animate__fadeIn animate__slower">
+    <swiper [config]="swiperConfig">
+      <ng-template swiperSlide *ngFor="let project of projects">
+        <div class="card card-coin card-plain">
+          <div class="card-header">
+            <img class="img-center img-fluid" src="{{imageUrl(project.mainImage)}}" />
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12 text-center">
+                <h4 class="text-uppercase">{{project.title}}</h4>
+                <span>{{project.description}}</span>
+                <hr class="line-primary" />
+              </div>
+            </div>
+            <div class="row">
+              <ul class="list-group">
+                <li class="list-group-item">{{project.date | date: 'dd/MM/yyyy'}}</li>
+                <span class="text-primary"> Tecnologias</span>
+                <div style="height: 2em;overflow-y: scroll;">
+                <ul class="list-group" *ngFor="let tag of project.tags">
+                  <li class="list-group-item">{{tag}}</li>
+                </ul>
+              </div>
+              </ul>
+            </div>
+          </div>
+          <div class="card-footer text-center">
+            <a href="{{project.link}}" class="btn btn-primary btn-simple" target="_blank">View</a>
+          </div>
+        </div>
+      </ng-template>
+    </swiper>
+  </div>
+ 
+
+</section>
