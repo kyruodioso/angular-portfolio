@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, HostListener } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import {AngularFirestoreCollection} from '@angular/fire/compat/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 
 @Component({
@@ -10,6 +11,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ContactComponent implements OnInit, OnDestroy {
 
   public form: FormGroup;
+  private contactForm: AngularFirestoreCollection<any>
+  isSubmit = true;
+submitMessage=''
 
   isCollapsed = true;
   focus;
@@ -17,7 +21,7 @@ export class ContactComponent implements OnInit, OnDestroy {
   focus2;
   focus3;
   focus4;
-  constructor(private formBuilder:FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private firestore:AngularFirestore) {}
   @HostListener("document:mousemove", ["$event"])
   onMouseMove(e:any) {
     var squares1 = document.getElementById("square1");
@@ -89,6 +93,9 @@ export class ContactComponent implements OnInit, OnDestroy {
     var body = document.getElementsByTagName("body")[0];
     body.classList.add("register-page");
 
+    this.contactForm = this.firestore.collection('enquiry')
+
+
     this.form= this.formBuilder.group({
       name:['',[Validators.required]],
       email:['',[Validators.required,Validators.email]],
@@ -98,15 +105,20 @@ export class ContactComponent implements OnInit, OnDestroy {
     })
     this.onMouseMove(event);
   }
-  send() {
-    this.form.reset({
-      name:'',
-      email:'',
-      message:'',
-      company:'',
-      phone:''
-     })
-    }
+  submitData(value:any){
+    this.contactForm.add(value).then(res=>{
+      this.submitMessage= `Mensaje enviado! Gracias por contactarse :)`;
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+
+    this.isSubmit= true;
+   setTimeout(()=>{
+    this.isSubmit=false
+   },8000)
+  }
+
   ngOnDestroy() {
     var body = document.getElementsByTagName("body")[0];
     body.classList.remove("register-page");

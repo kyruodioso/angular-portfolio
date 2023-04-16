@@ -15,14 +15,14 @@
                             <h4 class="card-title">Contacto</h4>
                         </div>
                         <div class="card-body">
-                            <form class="form" [formGroup]="form" (submit)="send()" autocomplete="off" netlify>
+                            <form class="form" name="contact" [formGroup]="form" method="POST" autocomplete="off" method="POST">
                                 <div class="input-group" [ngClass]="{ 'input-group-focus': focus === true }">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
                                             <i class="tim-icons icon-single-02"> </i>
                                         </div>
                                     </div>
-                                    <input class="form-control" placeholder="Nombre Completo" type="text"
+                                    <input class="form-control" placeholder="Nombre Completo" type="text" name="name"
                                         (focus)="focus = true" (blur)="focus = false"  formControlName="name" required/>
                                 </div>
                                 <div class="input-group" [ngClass]="{ 'input-group-focus': focus1 === true }">
@@ -31,7 +31,7 @@
                                             <i class="tim-icons icon-email-85"> </i>
                                         </div>
                                     </div>
-                                    <input class="form-control" placeholder="Email" type="text" (focus)="focus1 = true"
+                                    <input class="form-control" placeholder="Email" type="text" (focus)="focus1 = true" name="name"
                                         (blur)="focus1 = false" formControlName="email"/>
                                 </div>
                                 <div class="input-group" [ngClass]="{ 'input-group-focus': focus2 === true }">
@@ -40,7 +40,7 @@
                                             <i class="tim-icons icon-bank"> </i>
                                         </div>
                                     </div>
-                                    <input class="form-control" placeholder="Empresa" type="text"
+                                    <input class="form-control" placeholder="Empresa" type="text" name="company"
                                         (focus)="focus2 = true" (blur)="focus2 = false" formControlName="company"/>
                                 </div>
                                 <div class="input-group" [ngClass]="{ 'input-group-focus': focus3 === true }">
@@ -49,17 +49,20 @@
                                             <i class="tim-icons icon-bolibe"> </i>
                                         </div>
                                     </div>
-                                    <input class="form-control" placeholder="Telefono" type="text"
+                                    <input class="form-control" placeholder="Telefono" type="text" name="phone"
                                         (focus)="focus3 = true" (blur)="focus3 = false" formControlName="phone"/>
                                 </div>
                                 <div class="form-group" [ngClass]="{ 'input-group-focus': focus4 === true }">
                                     <div class="input-group-prepend">
-                                    <label for="exampleFormControlTextarea1">Mensaje</label>
+                                    <label for="exampleFormControlTextarea1" name="message">Mensaje</label>
                                 </div>
                                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" (focus)="focus4=true" (blur)="focus4 = false" formControlName="message"></textarea>
+                                    <div class="col-md-12" *ngIf="isSubmit">
+                                        <alert [type]="success" >{{submitMessage}}</alert>    
+                                       </div>
                                 </div>
                                 <div class="card-footer">
-                                    <button class="btn btn-danger btn-round btn-lg" [disabled]="form.invalid">
+                                    <button type="submit" class="btn btn-danger btn-round btn-lg" (click)="submitData(form.value)">
                                         Send
                                     </button>
                                 </div>

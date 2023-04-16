@@ -8,12 +8,14 @@ import { AboutmeComponent } from "./pages/aboutme/aboutme.component";
 import { ContactComponent } from "./pages/contact/contact.component";
 import { ProjectsComponent } from "./pages/projects/projects.component";
 
+
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
   { path: "home", component: IndexComponent },
   {path:"about-me", component:AboutmeComponent},
   {path:"contact", component:ContactComponent},
   {path:"projects", component:ProjectsComponent},
+
  
 ];
 

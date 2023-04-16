@@ -25,6 +25,12 @@ import { ContactComponent } from './contact/contact.component';
 
 import {SwiperModule} from 'swiper/angular';
 import { ComponentsModule } from "../components/components.module";
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { SuccessFormComponent } from './success-form/success-form.component';
+import { AngularFireModule } from '@angular/fire/compat';
+
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { environment } from "src/environments/environment";
 
 @NgModule({
   imports: [
@@ -34,6 +40,8 @@ import { ComponentsModule } from "../components/components.module";
     FormsModule,
     RouterModule,
     ComponentsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
     
     BsDropdownModule.forRoot(),
    // ProgressbarModule.forRoot(),
@@ -53,7 +61,9 @@ import { ComponentsModule } from "../components/components.module";
 
     AboutmeComponent,
     ProjectsComponent,
-    ContactComponent
+    ContactComponent,
+    PageNotFoundComponent,
+    SuccessFormComponent
   ],
   exports: [
     IndexComponent,

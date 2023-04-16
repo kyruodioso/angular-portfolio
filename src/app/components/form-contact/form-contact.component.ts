@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {AngularFirestoreCollection} from '@angular/fire/compat/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+
+
 
 @Component({
   selector: 'app-form-contact',
@@ -7,17 +11,24 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./form-contact.component.scss']
 })
 export class FormContactComponent implements OnInit{
+[x: string]: any;
+
+public form: FormGroup;
+
+isSubmit = true;
+submitMessage=''
+
+private contactForm: AngularFirestoreCollection<any>
 
 
-  public form: FormGroup;
-
-  constructor(private formBuilder:FormBuilder){
+  constructor(private formBuilder: FormBuilder, private firestore:AngularFirestore){
    
   }
 
+  ngOnInit(){
 
- 
-  ngOnInit():void{
+    this.contactForm = this.firestore.collection('enquiry')
+
     this.form= this.formBuilder.group({
       name:['',[Validators.required]],
       email:['',[Validators.required,Validators.email]],
@@ -27,15 +38,18 @@ export class FormContactComponent implements OnInit{
     })
   }
 
-  send():any{
-    this.form.reset({
-     name:'',
-     email:'',
-     message:'',
-     company:'',
-     phone:''
+  submitData(value:any){
+    this.contactForm.add(value).then(res=>{
+      this.submitMessage= `Mensaje enviado! Gracias por contactarse :)`;
     })
- }
+    .catch(err=>{
+      console.log(err)
+    })
 
+    this.isSubmit= true;
+   setTimeout(()=>{
+    this.isSubmit=false
+   },8000)
+  }
 
 }

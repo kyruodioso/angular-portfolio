@@ -8,7 +8,13 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { AlertModule } from "ngx-bootstrap/alert";
 
 import { FormContactComponent } from './form-contact/form-contact.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AngularFireModule } from '@angular/fire/compat';
+
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { environment } from "src/environments/environment";
+
+
 
 
 
@@ -21,10 +27,14 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule,
+    AngularFireModule,
     ReactiveFormsModule,
     BsDropdownModule.forRoot(),
     AlertModule.forRoot(),
     CollapseModule.forRoot(),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule
 
   ],
   exports:[

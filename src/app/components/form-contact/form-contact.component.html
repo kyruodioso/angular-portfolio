@@ -8,23 +8,26 @@
               <h5 class="text-on-back">03</h5>
             </div>
             <div class="card-body">
-              <form [formGroup]="form" (submit)="send()" autocomplete="off" netlify>
+        
+             <form class="form" [formGroup]="form" name="form" method="POST"
+              >
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="name"> Su Nombre </label>
-                      <input class="form-control" type="text" id="name" value="Nombre" formControlName="name" required/>
+                      <input class="form-control" type="text" id="name" value="nombre" formControlName="name"  name="name"  required/>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="email"> Email </label>
-                      <input
+                      <input 
+                      formControlName="email"
                         class="form-control"
                         placeholder="email@email.com"
                         type="email"
                         id="email"
-                        formControlName="email"
+                        name="email"
                         required
                       />
                     </div>
@@ -38,8 +41,9 @@
                         class="form-control"
                         type="text"
                         id="phone"
-                        placeholder="011-152321345"
+                        name="phone"
                         formControlName="phone"
+                        placeholder="011-152321345"
                       />
                     </div>
                   </div>
@@ -52,6 +56,7 @@
                         placeholder="Empresa"
                         id="company"
                         formControlName="company"
+                        name="company"
                       />
                     </div>
                   </div>
@@ -59,27 +64,34 @@
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
-                      <label id="message"> Mensaje </label>
-                      <input
+                      <label name="message" type="text" id="message" value="message"> Mensaje </label>
+                      <textarea
                         class="form-control"
                         placeholder="Quisiera contactarme"
                         type="text"
                         id="message"
                         formControlName="message"
-                      />
+                        name="message"
+                      ></textarea>
                     </div>
+                    <div class="col-md-12" *ngIf="isSubmit">
+                      <alert [type]="success" >{{submitMessage}}</alert>    
+                     </div>
                   </div>
                 </div>
                 <button
+                type="reset"
                   class="btn btn-danger btn-round float-right"
                   placement="right"
-                  [disabled]="form.invalid"
-                  type="submit"
+                  (click)="submitData(form.value)"
                 >
                   Enviar
                 </button>
+
                
               </form>
+
+           
             </div>
           </div>
         </div>
@@ -115,4 +127,6 @@
         </div>
       </div>
     </div>
+ 
+
   </section>
