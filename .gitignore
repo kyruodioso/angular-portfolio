@@ -51,5 +51,8 @@ backend-portfolio/node_modules/
 backend-portfolio/dist
 backend-portfolio/sanity.config.ts
 
+#environments
+src/environments/
+
 # Local Netlify folder
 .netlify
